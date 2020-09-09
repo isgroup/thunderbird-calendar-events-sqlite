@@ -31,8 +31,8 @@ FROM
 	`cal_events`,
 	`cal_properties`
 WHERE
-	`cal_events`.`event_start` > (1599609600*1000000) AND
-	`cal_events`.`event_end` < (1599692400*1000000) AND
+	`cal_events`.`event_start` > (STRFTIME('%s', 'now', 'start of day')*1000000) AND
+	`cal_events`.`event_end` < (STRFTIME('%s', 'now', 'start of day', '+1 day')*1000000) AND
 	`cal_properties`.`key` = 'DESCRIPTION' AND
 	`cal_properties`.`item_id` = `cal_events`.`id`
 ;
